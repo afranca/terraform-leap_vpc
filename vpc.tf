@@ -20,3 +20,12 @@ resource "aws_subnet" "main-public-1" {
     Name  = "main-public-1"
   }
 }
+
+
+# Internet GW
+resource "aws_internet_gateway" "main-igw" {
+  vpc_id  = aws_vpc.main.id
+  tags = {
+    Name ="Main IGW"
+  }
+}
