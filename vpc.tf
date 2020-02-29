@@ -21,6 +21,17 @@ resource "aws_subnet" "main-public-sb" {
   }
 }
 
+# Private Subnets
+resource "aws_subnet" "main-private-sb" {
+  vpc_id                  = aws_vpc.main.id
+  cidr_block              = "10.0.2.0/24"
+  map_public_ip_on_launch = "false"
+  availability_zone       = "eu-central-1a"
+
+  tags = {
+    Name = "main-private-sb"
+  }
+}
 
 # Internet GW
 resource "aws_internet_gateway" "main-igw" {
