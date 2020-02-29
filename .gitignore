@@ -1,0 +1,11 @@
+*/terraform.tfvars
+*/terraform.tfstate
+*/terraform.tfstate.backup
+*/.terraform
+*/leapkey*
+terraform.tfvars
+terraform.tfstate
+terraform.tfstate.backup
+.terraform
+leap*
+vars*
