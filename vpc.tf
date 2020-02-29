@@ -11,13 +11,13 @@ resource "aws_vpc" "main" {
 }
 
 # Public Subnets
-resource "aws_subnet" "main-public-1" {
+resource "aws_subnet" "main-public-sb" {
   vpc_id                  = aws_vpc.main.id
   cidr_block              = "10.0.1.0/24"
   map_public_ip_on_launch = "true"
   availability_zone       = "eu-central-1a"
   tags  = {
-    Name  = "main-public-1"
+    Name  = "main-public-sb"
   }
 }
 
@@ -44,7 +44,7 @@ resource "aws_route_table" "main-public-rt" {
 
 # Route Associations Public
 resource "aws_route_table_association" "main-public-rta" {
-  subnet_id       = aws_subnet.main-public-1.id
+  subnet_id       = aws_subnet.main-public-sb.id
   route_table_id  = aws_route_table.main-public-rt.id
 }
 
