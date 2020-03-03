@@ -14,7 +14,7 @@ resource "aws_autoscaling_group" "autoscaling_group" {
   name                      = "autoscaling_group"
   vpc_zone_identifier       = [aws_subnet.main-public-sb.id]
   launch_configuration      = aws_launch_configuration.launchconfig.name
-  min_size                  = 1
+  min_size                  = 2
   max_size                  = 2
   health_check_grace_period = 300
   health_check_type         = "ELB"
