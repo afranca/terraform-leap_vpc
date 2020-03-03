@@ -43,7 +43,6 @@ resource "aws_subnet" "main-private-sb-02" {
   }
 }
 
-
 # Internet GW
 resource "aws_internet_gateway" "main-igw" {
   vpc_id  = aws_vpc.main.id
