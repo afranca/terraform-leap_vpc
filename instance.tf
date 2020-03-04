@@ -25,6 +25,6 @@ resource "aws_instance" "example" {
   vpc_security_group_ids = [var.ENV == "prod" ? aws_security_group.allow-ssh-prod.id : aws_security_group.allow-ssh-dev.id]
 
   # the public SSH key
-  key_name = aws_key_pair.mykeypair.key_name
+  key_name = aws_key_pair.leapkeypair.key_name
 }
 
