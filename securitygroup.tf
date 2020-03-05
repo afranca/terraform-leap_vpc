@@ -1,8 +1,7 @@
-resource "aws_security_group" "allow-ssh-prod" {
-  vpc_id      = module.vpc-prod.vpc_id
-  name        = "allow-ssh"
+resource "aws_security_group" "jenkins-securitygroup" {
+  vpc_id      = aws_vpc.main.id
+  name        = "jenkins-securitygroup"
   description = "security group that allows ssh and all egress traffic"
-
   egress {
     from_port   = 0
     to_port     = 0
@@ -16,17 +15,21 @@ resource "aws_security_group" "allow-ssh-prod" {
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
-
+  ingress {
+    from_port   = 8080
+    to_port     = 8080
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
   tags = {
-    Name = "allow-ssh"
+    Name = "jenkins-securitygroup"
   }
 }
 
-resource "aws_security_group" "allow-ssh-dev" {
-  vpc_id      = module.vpc-dev.vpc_id
-  name        = "allow-ssh"
+resource "aws_security_group" "app-securitygroup" {
+  vpc_id      = aws_vpc.main.id
+  name        = "app-securitygroup"
   description = "security group that allows ssh and all egress traffic"
-
   egress {
     from_port   = 0
     to_port     = 0
@@ -40,9 +43,14 @@ resource "aws_security_group" "allow-ssh-dev" {
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
-
+  ingress {
+    from_port   = 80
+    to_port     = 80
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
   tags = {
-    Name = "allow-ssh"
+    Name = "app-securitygroup"
   }
 }
 

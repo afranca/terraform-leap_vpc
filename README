@@ -1,0 +1,7 @@
+Jenkins Configuration
+
+Build Execute Shell Script
+ARTIFACT=`packer build -machine-readable packer-demo.json | aws -F '$0 ~/artifact,0,id/ {print $6}'`
+AMI_ID=`echo $ARTIFACT |cut -d ':' -f2`
+echo 'variable "APP_INSTANCE_AMI" { default = "'${$AMI_ID}'" }' > amivar.tf
+aws s3 cp amivar.tf s3://terraform-state-jenkins-packer-093005032020/amivar.tf
